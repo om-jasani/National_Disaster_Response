@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.innerWidth < 768) {
                 navLinks.classList.remove('active');
             }
+            // Update the URL hash without triggering a scroll
+            history.pushState(null, null, `#${sectionId}`);
         }
     }
 
@@ -47,8 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Show initial section
-    showSection('home');
+    // Adjust section display
+    function adjustSectionDisplay() {
+        const hash = window.location.hash.substring(1);
+        if (hash && document.getElementById(hash)) {
+            showSection(hash);
+        } else if (!hash || hash === 'home') {
+            showSection('home');
+        }
+    }
 
     // Dark mode toggle
     const darkModeToggle = document.getElementById('dark-mode-toggle');
@@ -112,13 +121,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Back to top button
     const backToTopButton = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTopButton.style.display = "block";
-        } else {
-            backToTopButton.style.display = "none";
-        }
-    });
+    const header = document.querySelector('header');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        });
+    }, observerOptions);
+
+    observer.observe(header);
+
     backToTopButton.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -204,19 +226,6 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollToSection('home');
     });
 
-    // Ensure proper section display on page load and resize
-    function adjustSectionDisplay() {
-        const hash = window.location.hash.substring(1);
-        if (hash) {
-            showSection(hash);
-        } else {
-            showSection('home');
-        }
-    }
-
-    window.addEventListener('load', adjustSectionDisplay);
-    window.addEventListener('resize', adjustSectionDisplay);
-
     // Improve language selector behavior
     languageSelector.addEventListener('focus', () => {
         languageSelector.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
@@ -225,4 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
     languageSelector.addEventListener('blur', () => {
         languageSelector.style.backgroundColor = 'transparent';
     });
+
+    // Event listeners for page load and navigation
+    window.addEventListener('load', adjustSectionDisplay);
+    window.addEventListener('popstate', adjustSectionDisplay);
 });
