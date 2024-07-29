@@ -1,0 +1,21 @@
+{
+    "name": "National Disaster Response App",
+    "short_name": "DisasterApp",
+    "description": "A comprehensive national disaster response application",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#f1faee",
+    "theme_color": "#e63946",
+    "icons": [
+        {
+            "src": "/images/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

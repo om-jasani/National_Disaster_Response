@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Disaster Response Website</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="#home">
+                        <img src="images/logo.png" alt="National Disaster Response Website Logo">
+                    </a>
+                </div>
+                <button class="menu-toggle">☰</button>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#alerts" class="nav-link">Alerts</a></li>
+                    <li><a href="#map" class="nav-link">Map</a></li>
+                    <li><a href="#resources" class="nav-link">Resources</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <button id="login-btn">Login</button>
+                    <button id="signup-btn">Sign Up</button>
+                </div>
+                <button id="dark-mode-toggle">🌙</button>
+                <select id="language-selector">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                </select>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="section active">
+            <div class="container">
+                <h1>National Disaster Response at Your Fingertips</h1>
+                <p class="subtitle">Stay informed, connected, and safe during emergencies with our comprehensive disaster response platform.</p>
+                <button class="cta-button">Get Started</button>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <img src="images/alert-icon.png" alt="Alert Icon">
+                        <h3>Nationwide Alerts</h3>
+                        <p>Receive real-time notifications about emergencies in your area.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="images/map-icon.png" alt="Map Icon">
+                        <h3>Interactive Crisis Maps</h3>
+                        <p>Visualize affected areas and locate nearby resources across the country.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="images/communication-icon.png" alt="Communication Icon">
+                        <h3>Emergency Services Connection</h3>
+                        <p>Directly connect with local and national emergency services.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="alerts" class="section">
+            <div class="container">
+                <h2>Current Alerts</h2>
+                <div id="alert-list"></div>
+            </div>
+        </section>
+
+        <section id="map" class="section">
+            <div class="container">
+                <h2>Emergency Map</h2>
+                <div id="crisis-map"></div>
+            </div>
+        </section>
+
+        <section id="resources" class="section">
+            <div class="container">
+                <h2>Emergency Resources</h2>
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <h3>Emergency Contacts</h3>
+                        <ul id="emergency-contacts"></ul>
+                    </div>
+                    <div class="resource-item">
+                        <h3>Preparedness Guides</h3>
+                        <ul id="preparedness-guides"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home" class="scroll-link">Home</a></li>
+                        <li><a href="#alerts" class="scroll-link">Alerts</a></li>
+                        <li><a href="#map" class="scroll-link">Map</a></li>
+                        <li><a href="#resources" class="scroll-link">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-media">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Stay Updated</h4>
+                    <div class="newsletter">
+                        <form>
+                            <input type="email" placeholder="Enter your email">
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 National Disaster Response Website. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form>
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password">
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+            <form>
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Confirm Password">
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="cookie-consent" class="hidden">
+        <p>We use cookies to improve your experience and provide essential features. By using our site, you agree to our use of cookies.</p>
+        <button id="accept-cookies">Accept</button>
+    </div>
+
+    <button id="back-to-top" title="Back to Top">↑</button>
+
+    <script src="scripts/app.js"></script>
+</body>
+</html>
